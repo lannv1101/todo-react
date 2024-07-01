@@ -2,7 +2,15 @@ import { Box, Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import React, { FC, ReactElement } from 'react';
 
-export const Profile: FC = (): ReactElement => {
+import PropTypes from 'prop-types';
+
+interface IProfile {
+  name?: string;
+}
+export const Profile: FC<IProfile> = (
+  props,
+): ReactElement => {
+  const { name = 'Lan' } = props;
   return (
     <Box
       display="flex"
@@ -19,15 +27,19 @@ export const Profile: FC = (): ReactElement => {
         }}
       >
         <Typography variant="h4" color="text.primary">
-          LV
+          {`${name.substring(0, 1)}`}
         </Typography>
       </Avatar>
       <Typography variant="h6" color="text.primary">
-        Welcome, Lan
+        Welcome, {name}
       </Typography>
       <Typography variant="body1" color="text.primary">
         This is your personal tasks manager
       </Typography>
     </Box>
   );
+};
+
+Profile.propTypes = {
+  name: PropTypes.string,
 };
