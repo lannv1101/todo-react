@@ -3,11 +3,13 @@ import React, { FC, ReactElement } from 'react';
 import { ITaskCounter } from './interface/ITaskCounter';
 import { Status } from '../createTaskForm/enums/Status';
 import { emitCorrectBorderColor } from './helpers/emitCorrectBorderColor';
+import { emitCorrectLabel } from './helpers/emitCorrectLabel';
+import PropTypes from 'prop-types';
 
 export const TaskCounter: FC<ITaskCounter> = (
   props,
 ): ReactElement => {
-  const { status = Status.inProgress, count = 0 } = props;
+  const { status = Status.todo, count = 0 } = props;
   return (
     <>
       <Box
@@ -29,7 +31,7 @@ export const TaskCounter: FC<ITaskCounter> = (
           }}
         >
           <Typography color="#ffffff" variant="h4">
-            10
+            {count}
           </Typography>
         </Avatar>
         <Typography
@@ -38,9 +40,18 @@ export const TaskCounter: FC<ITaskCounter> = (
           fontSize="20px"
           variant="h5"
         >
-          Subtitle
+          {emitCorrectLabel(status)}
         </Typography>
       </Box>
     </>
   );
+};
+
+TaskCounter.propTypes = {
+  count: PropTypes.number,
+  status: PropTypes.oneOf([
+    Status.todo,
+    Status.inProgress,
+    Status.completed,
+  ]),
 };
