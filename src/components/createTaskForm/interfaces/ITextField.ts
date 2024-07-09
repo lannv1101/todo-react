@@ -1,5 +1,5 @@
-import React from 'react';
 import { IDisabled } from './IDisabled';
+import React from 'react';
 
 export interface ITextField extends IDisabled {
   onChange?: (

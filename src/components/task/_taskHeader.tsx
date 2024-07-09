@@ -1,20 +1,23 @@
 import { Box, Chip, Typography } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
-import { format } from 'date-fns';
-import { ITaskHeader } from './interface/ITaskHeader';
+
+import { ITaskHeader } from './interfaces/ITaskHeader';
 import PropTypes from 'prop-types';
+import { format } from 'date-fns';
 
 export const TaskHeader: FC<ITaskHeader> = (
   props,
 ): ReactElement => {
-  const { title = 'Default title', date = new Date() } =
+  // Destructure props
+  const { title = 'Default Title', date = new Date() } =
     props;
+
   return (
     <Box
       display="flex"
       width="100%"
       justifyContent="space-between"
-      mb={4}
+      mb={3}
     >
       <Box>
         <Typography variant="h6">{title}</Typography>

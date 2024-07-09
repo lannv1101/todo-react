@@ -1,10 +1,11 @@
-import { SelectChangeEvent } from '@mui/material';
 import { IDisabled } from './IDisabled';
+import { SelectChangeEvent } from '@mui/material';
 
 export interface ISelectItems {
   value: string;
   label: string;
 }
+
 export interface ISelectField extends IDisabled {
   name?: string;
   label?: string;

@@ -1,5 +1,5 @@
 import { Status } from '../../createTaskForm/enums/Status';
-import { TaskCounterStatusType } from '../interface/ITaskCounter';
+import { TaskCounterStatusType } from '../interfaces/ITaskCounter';
 
 export const emitCorrectLabel = (
   status: TaskCounterStatusType,

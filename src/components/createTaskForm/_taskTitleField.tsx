@@ -1,15 +1,18 @@
-import { TextField } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
-import { ITextField } from './interface/ITextField';
+
+import { ITextField } from './interfaces/ITextField';
 import PropTypes from 'prop-types';
+import { TextField } from '@mui/material';
 
 export const TaskTitleField: FC<ITextField> = (
   props,
 ): ReactElement => {
+  //  Destructure props
   const {
     onChange = (e) => console.log(e),
     disabled = false,
   } = props;
+
   return (
     <TextField
       id="title"

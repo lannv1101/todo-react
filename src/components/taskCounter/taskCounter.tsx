@@ -1,15 +1,17 @@
 import { Avatar, Box, Typography } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
-import { ITaskCounter } from './interface/ITaskCounter';
+
+import { ITaskCounter } from './interfaces/ITaskCounter';
+import PropTypes from 'prop-types';
 import { Status } from '../createTaskForm/enums/Status';
 import { emitCorrectBorderColor } from './helpers/emitCorrectBorderColor';
 import { emitCorrectLabel } from './helpers/emitCorrectLabel';
-import PropTypes from 'prop-types';
 
 export const TaskCounter: FC<ITaskCounter> = (
   props,
 ): ReactElement => {
-  const { status = Status.todo, count = 0 } = props;
+  //  Destructure props
+  const { status = Status.completed, count = 0 } = props;
   return (
     <>
       <Box

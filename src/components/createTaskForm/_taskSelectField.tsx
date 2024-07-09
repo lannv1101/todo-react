@@ -6,17 +6,19 @@ import {
   SelectChangeEvent,
 } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
-import { ISelectField } from './interface/ISelectField';
+
+import { ISelectField } from './interfaces/ISelectField';
 import PropTypes from 'prop-types';
 
 export const TaskSelectField: FC<ISelectField> = (
   props,
 ): ReactElement => {
+  //  Destructure Props
   const {
     value = '',
-    label = 'SelectBox',
-    name = 'SelectBox',
-    items = [{ value: '', label: 'Add items' }],
+    label = 'Select Box',
+    name = 'selectBox',
+    items = [{ value: '', label: 'Add Items' }],
     disabled = false,
     onChange = (e: SelectChangeEvent) => console.log(e),
   } = props;
@@ -35,7 +37,7 @@ export const TaskSelectField: FC<ISelectField> = (
         {items.map((item, index) => (
           <MenuItem
             key={item.value + index}
-            defaultValue={item.value}
+            value={item.value}
           >
             {item.label}
           </MenuItem>
@@ -54,6 +56,6 @@ TaskSelectField.propTypes = {
     PropTypes.shape({
       value: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
-    }).isRequired, 
+    }).isRequired,
   ),
 };

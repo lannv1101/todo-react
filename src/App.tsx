@@ -1,13 +1,13 @@
-import { ThemeProvider } from '@emotion/react';
-import React, { FC, ReactElement } from 'react';
-import { customTheme } from './theme/customTheme';
-import { CssBaseline } from '@mui/material';
-import { DashBoard } from './pages/dashboard/dashboard';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import {
   QueryClient,
   QueryClientProvider,
-} from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+} from 'react-query';
+import React, { FC, ReactElement } from 'react';
+
+import { Dashboard } from './pages/dashboard/dashboard';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { customTheme } from './theme/customTheme';
 
 // Create a client
 const queryClient = new QueryClient();
@@ -17,7 +17,7 @@ const App: FC = (): ReactElement => {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={customTheme}>
         <CssBaseline />
-        <DashBoard />
+        <Dashboard />
       </ThemeProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

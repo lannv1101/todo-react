@@ -1,15 +1,17 @@
-import { Box } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
-import { TaskHeader } from './_taskHeader';
+
+import { Box } from '@mui/material';
+import { ITask } from './interfaces/ITask';
+import { Priority } from '../createTaskForm/enums/Priority';
+import PropTypes from 'prop-types';
+import { Status } from '../createTaskForm/enums/Status';
 import { TaskDescription } from './_taskDescription';
 import { TaskFooter } from './_taskFooter';
-import { ITask } from './interface/ITask';
-import { Priority } from '../createTaskForm/enums/Priority';
-import { Status } from '../createTaskForm/enums/Status';
-import PropType from 'prop-types';
+import { TaskHeader } from './_taskHeader';
 import { renderPriorityBorderColor } from './helpers/renderPriorityBorderColor';
 
 export const Task: FC<ITask> = (props): ReactElement => {
+  //  Destructure props
   const {
     title = 'Test Title',
     date = new Date(),
@@ -18,7 +20,9 @@ export const Task: FC<ITask> = (props): ReactElement => {
     status = Status.completed,
     onStatusChange = (e) => console.log(e),
     onClick = (e) => console.log(e),
+    id,
   } = props;
+
   return (
     <Box
       display="flex"
@@ -26,7 +30,7 @@ export const Task: FC<ITask> = (props): ReactElement => {
       justifyContent="flex-start"
       flexDirection="column"
       mb={4}
-      p={3}
+      p={2}
       sx={{
         width: '100%',
         backgroundColor: 'background.paper',
@@ -40,17 +44,19 @@ export const Task: FC<ITask> = (props): ReactElement => {
       <TaskFooter
         onClick={onClick}
         onStatusChange={onStatusChange}
+        id={id}
+        status={status}
       />
     </Box>
   );
 };
 
 Task.propTypes = {
-  title: PropType.string,
-  date: PropType.instanceOf(Date),
-  description: PropType.string,
-  onStatusChange: PropType.func,
-  onClick: PropType.func,
-  priority: PropType.string,
-  status: PropType.string,
+  title: PropTypes.string,
+  date: PropTypes.instanceOf(Date),
+  description: PropTypes.string,
+  onStatusChange: PropTypes.func,
+  onClick: PropTypes.func,
+  priority: PropTypes.string,
+  status: PropTypes.string,
 };

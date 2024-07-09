@@ -1,16 +1,17 @@
-import { Box, Typography } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
+import { Avatar, Box, Typography } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
 
 import PropTypes from 'prop-types';
 
 interface IProfile {
-  name?: string;
+  name: string;
 }
+
 export const Profile: FC<IProfile> = (
   props,
 ): ReactElement => {
-  const { name = 'Lan' } = props;
+  //  Destructure props
+  const { name = 'John' } = props;
   return (
     <Box
       display="flex"
@@ -31,7 +32,7 @@ export const Profile: FC<IProfile> = (
         </Typography>
       </Avatar>
       <Typography variant="h6" color="text.primary">
-        Welcome, {name}
+        {`Welcome, ${name}`}
       </Typography>
       <Typography variant="body1" color="text.primary">
         This is your personal tasks manager
@@ -41,5 +42,5 @@ export const Profile: FC<IProfile> = (
 };
 
 Profile.propTypes = {
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
 };
