@@ -10,6 +10,7 @@ import {
 import React, {
   FC,
   ReactElement,
+  useContext,
   useEffect,
   useState,
 } from 'react';
@@ -23,6 +24,7 @@ import { TaskSelectField } from './_taskSelectField';
 import { TaskTitleField } from './_taskTitleField';
 import { sendApiRequest } from '../../helpers/sendApiRequest';
 import { useMutation } from 'react-query';
+import { TaskStatusChangedContext } from '../../context';
 
 export const CreateTaskForm: FC = (): ReactElement => {
   // declare component states
@@ -39,6 +41,10 @@ export const CreateTaskForm: FC = (): ReactElement => {
   );
   const [showSuccess, setShowSuccess] =
     useState<boolean>(false);
+
+  const taskUpdateContext = useContext(
+    TaskStatusChangedContext,
+  );
 
   // Create task mutation
   const createTaskMutation = useMutation(
@@ -71,6 +77,7 @@ export const CreateTaskForm: FC = (): ReactElement => {
   useEffect(() => {
     if (createTaskMutation.isSuccess) {
       setShowSuccess(true);
+      taskUpdateContext.toggle();
     }
 
     const successTimeout = setTimeout(() => {
